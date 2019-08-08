@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<Header/>
-		<TodoContainer :tasks="tasks"/>
+		<TodoContainer :tasks="tasks" @delete-task="deleteTask"/>
 	</div>
 </template>
 
@@ -45,7 +45,13 @@ export default {
 				}
 			]
 		}
-	}
+	},
+	methods: {
+		deleteTask(id) {
+			console.log(`[Deleted] Task ${id}`);
+			this.tasks = this.tasks.filter(task => task.id !== id);
+		}
+	},
 }
 </script>
 

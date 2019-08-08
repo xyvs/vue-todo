@@ -7,7 +7,7 @@
 			</label>
 		</div>
 		<div class="task--delete">
-			<a href="#" class="task--delete--link" :data-id="task.id" @click="deleteTask">Delete</a>
+			<a href="#" class="task--delete--link" :data-id="task.id" @click="$emit('delete-task', task.id)">Delete</a>
 		</div>
 	</li>
 </template>
@@ -18,9 +18,6 @@ export default {
 		task: Object
 	},
 	methods: {
-		deleteTask(e) {
-			console.log(`[Deleted] Task ${e.target.getAttribute('data-id')}`);
-		},
 		checkToogle(e) {
 			console.log(`[Checked] Task ${e.target.id}`);
 		}

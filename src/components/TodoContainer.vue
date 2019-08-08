@@ -1,13 +1,18 @@
 <template>
 	<div class="todo-container">
 		<h2 class="category-title">Main</h2>
-		<ul class="tasks-list">
-			<Task v-for="task in tasks" :task="task" :key="task.id" />
-		</ul>
-		<p class="tasks-completed">
-			<span v-if="everythingDone" class="everything-done">You're awesome!</span>
-			<span v-else>{{ completedTasks }}/{{ totalTasks }} tasks completed</span>
-		</p>
+		<div class="tasks" v-if="totalTasks">
+			<ul class="tasks-list">
+				<Task v-for="task in tasks" :task="task" :key="task.id" @delete-task="$emit('delete-task', task.id)"/>
+			</ul>
+			<p class="tasks-completed">
+				<span v-if="everythingDone" class="everything-done">Everything done!</span>
+				<span v-else>{{ completedTasks }}/{{ totalTasks }} tasks completed</span>
+			</p>
+		</div>
+		<div v-else >
+			<p class="no-tasks">No tasks!</p>
+		</div>
 	</div>
 </template>
 
@@ -73,6 +78,11 @@ export default {
 		font-weight: bold;
 		text-align: center;
 		margin-top: 1em;
+	}
+
+	.no-tasks {
+		color: #a0a0a0;
+		margin-top: .5em;
 	}
 
 </style>
