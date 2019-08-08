@@ -29,13 +29,19 @@ export default {
 	},
 	computed: {
 		totalTasks() {
-			return this.tasks.length
+			return this.tasks.length;
 		},
 		completedTasks() {
-			return this.tasks.filter(task => task.completed).length
+			return this.tasks.filter(task => task.completed).length;
 		},
 		everythingDone() {
-				return this.completedTasks === this.totalTasks
+			var completed = this.completedTasks === this.totalTasks;
+
+			if (completed) {
+				console.log('Everything done!');
+			}
+
+			return completed
 		},
 	}
 }
